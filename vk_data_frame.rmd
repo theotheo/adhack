@@ -1,0 +1,170 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+# Загружаем пакеты
+```{r}
+library(httr)
+library(stringr) 
+library(devtools)
+```
+# Загружаем функции для работы с VK API
+
+```{r}
+source_url("https://gist.githubusercontent.com/paulokopny/63daf8ca42f9d842b122/raw/bf7c8f9f6944b44e7c791cb66f4919bd762f4dc9/vk.R")
+```
+# Авторизуемся
+
+```{r}
+# http://wardoctor.nosoc.io/public/paulokopny/vkauth/karepin.html - получаем код
+vk <- get.vk.connector(code = "8d0f1bed9d3cf82a26", app = "karepin", debug = T)
+```
+
+
+```{r}
+groups.getMembers = function(vk.get_data, group_id, offset=0, count=20, fields = NULL) {
+  print("Waiting...")
+  Sys.sleep(1)
+  method="groups.getMembers"
+  assert_that(!is.null(group_id))
+  assert_that(length(group_id)==1)
+  assert_that(is.character(group_id)|is.numeric(group_id))
+  if (is.character(group_id)){
+    assert_that(str_length(group_id)>0)
+    group_id <- as.numeric(group_id)
+  }
+  group_id <- abs(group_id)
+  return(vk.get_data(method=method, group_id=group_id, offset=offset, count=count, fields=fields))
+}
+
+members_all <- get.all.data(vk, groups.getMembers, group_id = 150590671, fields = "sex")
+
+
+profiles_sex = data.frame()
+for (i in 1:length(members_all)) {
+members_all1= members_all[[i]]
+profiles = sapply(1:length(members_all1), function(x){as.data.frame(t(unlist(members_all1[[x]])))})
+profiles = do.call(plyr::rbind.fill, profiles) 
+profiles = as.data.frame(profiles, stringsAsFactors = F) 
+profiles_sex = plyr::rbind.fill(profiles_sex, profiles)
+
+}
+```
+
+
+```{r}
+groups.getMembers = function(vk.get_data, group_id, offset=0, count=20, fields = NULL) {
+  print("Waiting...")
+  Sys.sleep(1)
+  method="groups.getMembers"
+  assert_that(!is.null(group_id))
+  assert_that(length(group_id)==1)
+  assert_that(is.character(group_id)|is.numeric(group_id))
+  if (is.character(group_id)){
+    assert_that(str_length(group_id)>0)
+    group_id <- as.numeric(group_id)
+  }
+  group_id <- abs(group_id)
+  return(vk.get_data(method=method, group_id=group_id, offset=offset, count=count, fields=fields))
+}
+
+members_all <- get.all.data(vk, groups.getMembers, group_id = 150590671, fields = "bdate")
+
+
+profiles_bdate = data.frame()
+for (i in 1:length(members_all)) {
+members_all1= members_all[[i]]
+profiles = sapply(1:length(members_all1), function(x){as.data.frame(t(unlist(members_all1[[x]])))})
+profiles = do.call(plyr::rbind.fill, profiles) 
+profiles = as.data.frame(profiles, stringsAsFactors = F) 
+profiles_bdate = plyr::rbind.fill(profiles_bdate, profiles)
+
+}
+```
+
+
+```{r}
+groups.getMembers = function(vk.get_data, group_id, offset=0, count=20, fields = NULL) {
+  print("Waiting...")
+  Sys.sleep(1)
+  method="groups.getMembers"
+  assert_that(!is.null(group_id))
+  assert_that(length(group_id)==1)
+  assert_that(is.character(group_id)|is.numeric(group_id))
+  if (is.character(group_id)){
+    assert_that(str_length(group_id)>0)
+    group_id <- as.numeric(group_id)
+  }
+  group_id <- abs(group_id)
+  return(vk.get_data(method=method, group_id=group_id, offset=offset, count=count, fields=fields))
+}
+
+members_all <- get.all.data(vk, groups.getMembers, group_id = 150590671, fields = "relation")
+
+
+profiles_relation = data.frame()
+for (i in 1:length(members_all)) {
+members_all1= members_all[[i]]
+profiles = sapply(1:length(members_all1), function(x){as.data.frame(t(unlist(members_all1[[x]])))})
+profiles = do.call(plyr::rbind.fill, profiles) 
+profiles = as.data.frame(profiles, stringsAsFactors = F) 
+profiles_relation = plyr::rbind.fill(profiles_relation, profiles)
+
+}
+```
+
+```{r}
+groups.getMembers = function(vk.get_data, group_id, offset=0, count=20, fields = NULL) {
+  print("Waiting...")
+  Sys.sleep(1)
+  method="groups.getMembers"
+  assert_that(!is.null(group_id))
+  assert_that(length(group_id)==1)
+  assert_that(is.character(group_id)|is.numeric(group_id))
+  if (is.character(group_id)){
+    assert_that(str_length(group_id)>0)
+    group_id <- as.numeric(group_id)
+  }
+  group_id <- abs(group_id)
+  return(vk.get_data(method=method, group_id=group_id, offset=offset, count=count, fields=fields))
+}
+
+members_all <- get.all.data(vk, groups.getMembers, group_id = 150590671, fields = "education")
+
+
+profiles_education = data.frame()
+for (i in 1:length(members_all)) {
+members_all1= members_all[[i]]
+profiles = sapply(1:length(members_all1), function(x){as.data.frame(t(unlist(members_all1[[x]])))})
+profiles = do.call(plyr::rbind.fill, profiles) 
+profiles = as.data.frame(profiles, stringsAsFactors = F) 
+profiles_education = plyr::rbind.fill(profiles_education, profiles)
+
+}
+
+```
+
+```{r}
+profiles_sex1 <- profiles_sex %>% select(uid, sex)
+profiles_bdate1 <- profiles_bdate %>% select(uid, bdate)
+profiles_relation1 <- profiles_relation %>% select(uid, relation)
+profiles_education1 <- profiles_education %>% select(uid, education_status)
+```
+
+```{r}
+profiles_photos$uid <- as.factor(profiles_photos$uid)
+
+p1 <- full_join(profiles_photos, profiles_sex1, by="uid")
+p2 <- left_join(p1, profiles_bdate1, by="uid")
+p3 <- left_join(p2, profiles_relation1, by="uid")
+profiles_all <- left_join(p3, profiles_education1, by="uid")
+
+```
+
+
+
+```{r}
+write.csv(profiles_all, file="~/profiles_all.csv") 
+```
+
