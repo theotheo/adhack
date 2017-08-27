@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <title>Vision-driven Recommendations Demo</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <!-- <link href="css/mdb.min.css" rel="stylesheet"> -->
+  <link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.4.0" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="static/css/style.css" rel="stylesheet">
+
+      <meta http-Equiv="Cache-Control" Content="no-cache" />
+      <meta http-Equiv="Pragma" Content="no-cache" />
+      <meta http-Equiv="Expires" Content="0" />
+
+
+  <script>
+      function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+    </script>
+</head>
+
+<body>
+  <div style="height:100%">
+    <div class="row">
+      <!-- <img src="{{ url_for('video_feed') }}"> -->
+      <div class="col-6">
+        <h2>Admin UI<h2>
+        <div>
+          <iframe  height="600px" frameborder="0" scrolling="no" onload="resizeIframe(this)"  width="100%" src="{{ url_for('video_feed') }}"></iframe>
+        </div>
+        <div>
+          <iframe  frameborder="0" scrolling="no" onload="resizeIframe(this)" width="100%" id='detected' src="{{ url_for('show_result') }}"></iframe>
+        </div>
+      </div>
+      <div class="col-6">
+        <h2>Welcome!<h2>
+        <iframe  frameborder="0" scrolling="yes" onload="resizeIframe(this)" height="100%" width="100%" id='recommendations' src="{{ url_for('show_recs') }}"></iframe>
+      </div>
+</body>
+
+<script>
+  window.setInterval(function () {
+    document.getElementById('detected').src += ''
+
+  }, 5000);
+
+  window.setInterval(function () {
+    document.getElementById('recommendations').src += ''
+
+  }, 5000);
+
+
+</script>
+
+</html>

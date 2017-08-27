@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <!-- <link href="css/mdb.min.css" rel="stylesheet"> -->
+    <link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.4.0" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Start your project here-->
+    <div style="height: 100" >
+        <div class="row">
+            <!--Card Light-->
+            {% for key,value in x.iterrows() %}
+            <div class="card col-4" style="height: 450px;">
+               {% if value['kind'] %}
+                  <a class="btn-floating btn-action" style="top:80px; right: 140px; font-size:80px; width: 120px; height: 120px"><i class="fa fa-{{ value['kind']}}" style="font-size:80px; line-height: 110px;"></i></a>
+               {% endif %}
+                <!--Card image-->
+                <div class="view overlay hm-white-slight" style="height: 250px">
+                          
+
+                </div>
+                <!--/.Card image-->
+                
+                <!--Card content-->
+                <div class="card-body">
+                    <!--Social shares button-->
+                    <a class="activator"><i class="fa fa-share-alt"></i></a>
+                    <!--Title-->
+                    <h4 class="card-title">XXX &#8381;</h4>
+                    <hr>
+                    <!--Text-->
+                    <p class="card-text">Товар</p>
+                    <!--<a href="#" class="black-text d-flex flex-row-reverse">
+                        <h5 class="waves-effect p-2">Read more <i class="fa fa-chevron-right"></i></h5>
+                    </a>-->
+                </div>
+                <!--/.Card content-->
+            </div>
+            <!--/.Card Light-->
+                        
+{% endfor %} 
+    </div>
+    <!-- /Start your project here-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+</body>

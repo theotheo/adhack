@@ -1,0 +1,12 @@
+<head>
+        <meta http-Equiv="Cache-Control" Content="no-cache" />
+        <meta http-Equiv="Pragma" Content="no-cache" />
+        <meta http-Equiv="Expires" Content="0" />
+    </head>
+
+{% for key,value in x.iterrows() %}
+    <img src="{{ value['photo'] }}" width="100px">
+    <div>{{ value['uid'] }}</div>
+    <div>{{ value['gender']}} </div>
+    <div>{{ value['vk'] }} </div>
+{% endfor %}
